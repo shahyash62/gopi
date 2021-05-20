@@ -1,5 +1,5 @@
 import { login } from '../services/authentication';
-import { getFaq } from '../services/faq';
+import { createFaq, deleteFaq, getFaq, saveFaq } from '../services/faq';
 
 export const LOGIN = 'LOGIN';
 export const loginAction = (username, password) => async (dispatch) => {
@@ -26,6 +26,43 @@ export const getFaqAction = () => async (dispatch) => {
                 payload: data.result,
             });
         } else throw new Error('No data returned');
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const SAVE_FAQ = 'SAVE_FAQ';
+export const saveFaqAction = (faq) => async (dispatch) => {
+    try {
+        const data = await saveFaq(faq);
+        dispatch({
+            type: SAVE_FAQ,
+            payload: data.result,
+        });
+    } catch (err) {
+        console.error(err);
+    }
+};
+export const DELETE_FAQ = 'DELETE_FAQ';
+export const deleteFaqAction = (id) => async (dispatch) => {
+    try {
+        const data = await deleteFaq(id);
+        dispatch({
+            type: DELETE_FAQ,
+            payload: data.result._id,
+        });
+    } catch (err) {
+        console.error(err);
+    }
+};
+export const CREATE_FAQ = 'CREATE_FAQ';
+export const createFaqAction = (faq) => async (dispatch) => {
+    try {
+        const data = await createFaq(faq);
+        dispatch({
+            type: CREATE_FAQ,
+            payload: data.result,
+        });
     } catch (err) {
         console.error(err);
     }

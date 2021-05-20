@@ -1,12 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getFaqAction } from '../actions/allActions';
+import { createFaqAction, deleteFaqAction, getFaqAction, saveFaqAction } from '../actions/allActions';
 
-const MainPage = ({ faqs, getFaqAction: getFaq }) => {
+const MainPage = ({ faqs, getFaqAction: getFaq, saveFaqAction: saveFaq, deleteFaqAction: deleteFaq, createFaqAction: createFaq }) => {
     const [selectedFaq, setSelectedFaq] = useState(null);
     useEffect(() => {
         getFaq();
     }, []);
+
+    const handleSave = () => {
+        saveFaq(selectedFaq);
+    };
+
+    const handleChange = (e) => {
+        setSelectedFaq((faq) => {
+            return {
+                ...faq,
+                [e.target.name]: e.target.value,
+            };
+        });
+    };
+
+    const handleDelete = () => {
+        deleteFaq(selectedFaq._id);
+    };
+
+    const handleCreate = () => {
+        createFaq(selectedFaq);
+    };
+
     return (
         <div>
             <ul>
@@ -24,15 +46,22 @@ const MainPage = ({ faqs, getFaqAction: getFaq }) => {
                     <div>
                         <div>
                             <label htmlFor="question">FAQ Question:</label>
-                            <input type="text" value={selectedFaq.faqQuestion} />
+                            <input onChange={handleChange} type="text" name="faqQuestion" value={selectedFaq.faqQuestion} />
                         </div>
                         <div>
                             <label htmlFor="answer">FAQ Answer:</label>
-                            <input type="text" value={selectedFaq.faqAnswer} />
+                            <input onChange={handleChange} type="text" name="faqAnswer" value={selectedFaq.faqAnswer} />
                         </div>
                         <div>
-                            <button type="button">Save</button>
-                            <button type="button">Delete</button>
+                            <button type="button" onClick={handleSave}>
+                                Save
+                            </button>
+                            <button type="button" onClick={handleDelete}>
+                                Delete
+                            </button>
+                            <button type="button" onClick={handleCreate}>
+                                Create
+                            </button>
                         </div>
                     </div>
                 )}
@@ -47,6 +76,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getFaqAction,
+    saveFaqAction,
+    deleteFaqAction,
+    createFaqAction,
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
