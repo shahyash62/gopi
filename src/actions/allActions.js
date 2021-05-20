@@ -5,10 +5,10 @@ export const LOGIN = 'LOGIN';
 export const loginAction = (username, password) => async (dispatch) => {
     try {
         const data = await login(username, password);
-        if (data.accessCode) {
+        if (data.accessToken) {
             dispatch({
                 type: LOGIN,
-                payload: data.accessCode,
+                payload: data.accessToken,
             });
         }
     } catch (err) {

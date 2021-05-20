@@ -49,4 +49,4 @@ const mapDispatchToProps = {
     getFaqAction,
 };
 
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

@@ -10,7 +10,7 @@ const allReducer = (state = initialState, action) => {
         case LOGIN: {
             return {
                 ...state,
-                accessCode: payload,
+                accessToken: payload,
             };
         }
         case GET_FAQ: {
