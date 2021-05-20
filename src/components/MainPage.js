@@ -37,6 +37,7 @@ const MainPage = ({ faqs, getFaqAction: getFaq, saveFaqAction: saveFaq, deleteFa
                         <li key={faq._id} onClick={() => setSelectedFaq(faq)}>
                             <p>{`FAQ Question: ${faq.faqQuestion}`}</p>
                             <p>{`FAQ Answer: ${faq.faqAnswer}`}</p>
+                            <p>{`FAQ Type: ${faq.faqType}`}</p>
                         </li>
                     );
                 })}
@@ -53,6 +54,7 @@ const MainPage = ({ faqs, getFaqAction: getFaq, saveFaqAction: saveFaq, deleteFa
                             <input onChange={handleChange} type="text" name="faqAnswer" value={selectedFaq.faqAnswer} />
                         </div>
                         <div className="input-container">
+                            <label htmlFor="type">FAQ Type:</label>
                             <select value={selectedFaq.faqType} onChange={handleChange} name="faqType" id="type">
                                 <option value="supplier">supplier</option>
                                 <option value="re-seller">re-seller</option>
