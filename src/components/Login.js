@@ -14,12 +14,12 @@ const Login = ({ loginAction: login }) => {
         }
     };
     return (
-        <form>
-            <div>
+        <form className="form">
+            <div className="input-container">
                 <label htmlFor="email">Enter username</label>
                 <input onChange={(e) => setEmail(e.target.value)} name="email" type="text" value={email} />
             </div>
-            <div>
+            <div className="input-container">
                 <label htmlFor="password">Enter password</label>
                 <input onChange={(e) => setPassword(e.target.value)} name="password" type="password" value={password} />
             </div>

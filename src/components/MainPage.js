@@ -30,8 +30,8 @@ const MainPage = ({ faqs, getFaqAction: getFaq, saveFaqAction: saveFaq, deleteFa
     };
 
     return (
-        <div>
-            <ul>
+        <div className="main-container">
+            <ul className="list">
                 {faqs.map((faq) => {
                     return (
                         <li key={faq._id} onClick={() => setSelectedFaq(faq)}>
@@ -41,16 +41,22 @@ const MainPage = ({ faqs, getFaqAction: getFaq, saveFaqAction: saveFaq, deleteFa
                     );
                 })}
             </ul>
-            <div>
+            <div className="input-form">
                 {selectedFaq && (
-                    <div>
-                        <div>
+                    <form>
+                        <div className="input-container">
                             <label htmlFor="question">FAQ Question:</label>
                             <input onChange={handleChange} type="text" name="faqQuestion" value={selectedFaq.faqQuestion} />
                         </div>
-                        <div>
+                        <div className="input-container">
                             <label htmlFor="answer">FAQ Answer:</label>
                             <input onChange={handleChange} type="text" name="faqAnswer" value={selectedFaq.faqAnswer} />
+                        </div>
+                        <div className="input-container">
+                            <select value={selectedFaq.faqType} onChange={handleChange} name="faqType" id="type">
+                                <option value="supplier">supplier</option>
+                                <option value="re-seller">re-seller</option>
+                            </select>
                         </div>
                         <div>
                             <button type="button" onClick={handleSave}>
@@ -63,7 +69,7 @@ const MainPage = ({ faqs, getFaqAction: getFaq, saveFaqAction: saveFaq, deleteFa
                                 Create
                             </button>
                         </div>
-                    </div>
+                    </form>
                 )}
             </div>
         </div>
