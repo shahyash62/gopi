@@ -4,7 +4,7 @@ import { loginAction } from '../actions/allActions';
 
 const Login = ({ loginAction: login }) => {
     const [email, setEmail] = useState('admin@yaari.com');
-    const [password, setPassword] = useState('admin123');
+    const [password, setPassword] = useState('admin1');
     const [error, setError] = useState(null);
     const handleLogin = async () => {
         if (email && password) {
